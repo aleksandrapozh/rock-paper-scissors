@@ -21,7 +21,11 @@ function getComputerChoice(){
 console.log(getComputerChoice())
 
 // Create function getHumanChoice
-//     Use prompt to receive human choice 
+function getHumanChoice(){
+//     Use prompt to receive human choice
+    return prompt('Choose: Rock, Paper or Scissors', '')
+}
+ 
 
 // Create and initialize with the value of 0 varible humanScore
 // Create and initialize with the value of 0 varible computerScore
