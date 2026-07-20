@@ -25,10 +25,11 @@ function getHumanChoice(){
 //     Use prompt to receive human choice
     return prompt('Choose: Rock, Paper or Scissors', '')
 }
- 
 
 // Create and initialize with the value of 0 varible humanScore
+let humanScore = 0;
 // Create and initialize with the value of 0 varible computerScore
+let computerScore = 0;
 
 // Create function playRound with 2 parameters humanScore and computerScore
 //     make parameter humanScore case-insensitive
