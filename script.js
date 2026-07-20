@@ -45,16 +45,31 @@ function playRound (humanChoice, computerChoice){
         humanScore++;
     }
 //     Else if computer win then display corresponding message and increment variable computerScore
-    else{
+    else if ((computerChoice === 'Rock' && humanChoiceInsensitive === 'Scissors') || 
+             (computerChoice === 'Paper' && humanChoiceInsensitive === 'Rock') || 
+             (computerChoice === 'Scissors' && humanChoiceInsensitive === 'Paper')) {
         console.log(`You lose! ${computerChoice} beats ${humanChoiceInsensitive}`);
         computerScore++;
     }
+    // Tie condition
+    else {
+        console.log(`It's a tie! Both chose ${humanChoiceInsensitive}`);
+    }
 }
 
-const humanSelection = getHumanChoice();
-const computerSelection = getComputerChoice();
 
-playRound(humanSelection, computerSelection)
 
 // Create function playGame
+function playGame(){
 //     call function playRound 5 times
+    for (i=0; i<5; i++){
+        console.log(`Round ${i+1}`)
+        const humanSelection = getHumanChoice();
+        const computerSelection = getComputerChoice();
+        playRound(humanSelection, computerSelection);
+        console.log(`Score: \nYou: ${humanScore}, Computer: ${computerScore}`)
+    }
+
+}
+
+playGame();
