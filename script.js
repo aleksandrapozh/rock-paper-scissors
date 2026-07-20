@@ -1,10 +1,24 @@
 console.log('Hello World');
 
 // Create function getComputerChoice
+function getComputerChoice(){
 //     Generate randomNumber between 0 and 1 using Math.random
+    let randomNumber = Math.random();
 //     If randomNumber < 0.33 then return rock
+    if (randomNumber < 0.33){
+        return 'Rock'
+    }
 //     Else if randomNumber < 0.66 then return paper
+    else if (randomNumber < 0.66){
+        return 'Paper'
+    }
 //     Else randomNumber < 1 then return scissors
+    else{
+        return 'Scissors'
+    }
+}
+
+console.log(getComputerChoice())
 
 // Create function getHumanChoice
 //     Use prompt to receive human choice 
