@@ -23,7 +23,8 @@ console.log(getComputerChoice())
 // Create function getHumanChoice
 function getHumanChoice(){
 //     Use prompt to receive human choice
-    return prompt('Choose: Rock, Paper or Scissors', '')
+    let HumanChoice = prompt('Choose: Rock, Paper or Scissors', '');
+    return HumanChoice
 }
 
 // Create and initialize with the value of 0 varible humanScore
@@ -31,10 +32,29 @@ let humanScore = 0;
 // Create and initialize with the value of 0 varible computerScore
 let computerScore = 0;
 
-// Create function playRound with 2 parameters humanScore and computerScore
+// Create function playRound with 2 parameters humanChoice and computerChoice
+function playRound (humanChoice, computerChoice){
 //     make parameter humanScore case-insensitive
+    let humanChoiceInsensitive = humanChoice.charAt(0).toUpperCase() + humanChoice.slice(1).toLowerCase();
+    console.log(humanChoiceInsensitive)
 //     If human win then display corresponding message and increment variable humanScore
+    if ((humanChoiceInsensitive==='Rock' && computerChoice==='Scissors') || 
+        (humanChoiceInsensitive==='Paper' && computerChoice==='Rock') || 
+        (humanChoiceInsensitive==='Scissors' && computerChoice==='Paper')){
+        console.log(`You win! ${humanChoiceInsensitive} beats ${computerChoice}`);
+        humanScore++;
+    }
 //     Else if computer win then display corresponding message and increment variable computerScore
+    else{
+        console.log(`You lose! ${computerChoice} beats ${humanChoiceInsensitive}`);
+        computerScore++;
+    }
+}
+
+const humanSelection = getHumanChoice();
+const computerSelection = getComputerChoice();
+
+playRound(humanSelection, computerSelection)
 
 // Create function playGame
 //     call function playRound 5 times
