@@ -18,58 +18,75 @@ function getComputerChoice(){
     }
 }
 
-console.log(getComputerChoice())
-
-// Create function getHumanChoice
-function getHumanChoice(){
-//     Use prompt to receive human choice
-    let HumanChoice = prompt('Choose: Rock, Paper or Scissors', '');
-    return HumanChoice
-}
 
 // Create and initialize with the value of 0 varible humanScore
 let humanScore = 0;
 // Create and initialize with the value of 0 varible computerScore
 let computerScore = 0;
 
+let roundCounter = 0;
+
+
 // Create function playRound with 2 parameters humanChoice and computerChoice
 function playRound (humanChoice, computerChoice){
-//     make parameter humanScore case-insensitive
-    let humanChoiceInsensitive = humanChoice.charAt(0).toUpperCase() + humanChoice.slice(1).toLowerCase();
-    console.log(humanChoiceInsensitive)
 //     If human win then display corresponding message and increment variable humanScore
-    if ((humanChoiceInsensitive==='Rock' && computerChoice==='Scissors') || 
-        (humanChoiceInsensitive==='Paper' && computerChoice==='Rock') || 
-        (humanChoiceInsensitive==='Scissors' && computerChoice==='Paper')){
-        console.log(`You win! ${humanChoiceInsensitive} beats ${computerChoice}`);
+    if ((humanChoice==='Rock' && computerChoice==='Scissors') || 
+        (humanChoice==='Paper' && computerChoice==='Rock') || 
+        (humanChoice==='Scissors' && computerChoice==='Paper')){
+        result.textContent = `You win! ${humanChoice} beats ${computerChoice}`;
         humanScore++;
+        
     }
 //     Else if computer win then display corresponding message and increment variable computerScore
-    else if ((computerChoice === 'Rock' && humanChoiceInsensitive === 'Scissors') || 
-             (computerChoice === 'Paper' && humanChoiceInsensitive === 'Rock') || 
-             (computerChoice === 'Scissors' && humanChoiceInsensitive === 'Paper')) {
-        console.log(`You lose! ${computerChoice} beats ${humanChoiceInsensitive}`);
+    else if ((computerChoice === 'Rock' && humanChoice === 'Scissors') || 
+             (computerChoice === 'Paper' && humanChoice  === 'Rock') || 
+             (computerChoice === 'Scissors' && humanChoice === 'Paper')) {
+        result.textContent = `You lose! ${computerChoice} beats ${humanChoice}`;
         computerScore++;
     }
     // Tie condition
     else {
-        console.log(`It's a tie! Both chose ${humanChoiceInsensitive}`);
+        result.textContent = `It's a tie! Both chose ${humanChoice}`;
     }
+
+    score.textContent = `Score: You: ${humanScore} | Computer: ${computerScore}`;
+    
+    if (humanScore === 5 || computerScore === 5){
+        if (humanScore === 5){
+            winner.textContent='You win!';
+            winner.style.color = 'green';
+        }
+        else{
+            winner.textContent = 'You lose!';
+            winner.style.color = 'red';
+        }
+
+        rockBtn.disabled = true;
+        paperBtn.disabled = true;
+        scissorsBtn.disabled = true;
+    }
+
 }
 
 
 
-// Create function playGame
-function playGame(){
-//     call function playRound 5 times
-    for (i=0; i<5; i++){
-        console.log(`Round ${i+1}`)
-        const humanSelection = getHumanChoice();
-        const computerSelection = getComputerChoice();
-        playRound(humanSelection, computerSelection);
-        console.log(`Score: \nYou: ${humanScore}, Computer: ${computerScore}`)
-    }
+const rockBtn = document.querySelector("#rock")
+const paperBtn = document.querySelector("#paper")
+const scissorsBtn = document.querySelector("#scissors")
 
-}
+rockBtn.addEventListener('click', () =>
+    playRound('Rock', getComputerChoice())
+)
 
-playGame();
+paperBtn.addEventListener('click', () =>
+    playRound('Paper', getComputerChoice())
+)
+
+scissorsBtn.addEventListener('click', () =>
+    playRound('Scissors', getComputerChoice())
+)
+
+const result = document.querySelector('#result');
+const score = document.querySelector('#score');
+const winner = document.querySelector('#winner')
+
